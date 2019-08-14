@@ -3,11 +3,12 @@
   <groupId>com.facebook.react</groupId>
   <artifactId>react-native</artifactId>
   <versioning>
-    <release>0.59.8</release>
+    <release>atheer-0.59.8</release>
     <versions>
       <version>1000.0.0-master</version>
       <version>0.59.8</version>
+      <version>atheer-0.59.8</version>
     </versions>
-    <lastUpdated>20190814193147</lastUpdated>
+    <lastUpdated>20190814204945</lastUpdated>
   </versioning>
 </metadata>
