@@ -7,6 +7,8 @@
 
 package com.facebook.react.modules.websocket;
 
+import android.util.Log;
+
 import com.facebook.common.logging.FLog;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -41,6 +43,7 @@ import okio.ByteString;
 @ReactModule(name = WebSocketModule.NAME, hasConstants = false)
 public final class WebSocketModule extends ReactContextBaseJavaModule {
   public static final String NAME="WebSocketModule";
+  private static final String TAG = "WebSocketModule";
   public interface ContentHandler {
     void onMessage(String text, WritableMap params);
 
@@ -102,11 +105,13 @@ public final class WebSocketModule extends ReactContextBaseJavaModule {
     @Nullable final ReadableMap options,
     final int id) {
 
+    Log.d(TAG, "Calling Url Request: " + url);
     OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
       .connectTimeout(10, TimeUnit.SECONDS)
       .writeTimeout(10, TimeUnit.SECONDS)
       .readTimeout(0, TimeUnit.MINUTES); // Disable timeouts for read
 
+    Log.d(TAG, "connect: Applying Atheer Parameters" + url);
     applyCustomBuilder(clientBuilder);
 
     OkHttpClient client = clientBuilder.build();

@@ -8,6 +8,7 @@ package com.facebook.react.modules.network;
 
 import android.net.Uri;
 import android.util.Base64;
+import android.util.Log;
 
 import com.facebook.common.logging.FLog;
 import com.facebook.react.bridge.Arguments;
@@ -263,10 +264,11 @@ public final class NetworkingModule extends ReactContextBaseJavaModule {
       int timeout,
       boolean withCredentials) {
     try {
+      Log.d(TAG, "Calling Url Request: " + url);
       sendRequestInternal(method, url, requestId, headers, data, responseType,
         useIncrementalUpdates, timeout, withCredentials);
     } catch (Throwable th) {
-      FLog.e(TAG, "Failed to send url request: " + url, th);
+      FLog.e(TAG, "Failed to send url request: " + url);
       ResponseUtil.onRequestError(getEventEmitter(), requestId, th.getMessage(), th);
     }
   }
@@ -317,6 +319,7 @@ public final class NetworkingModule extends ReactContextBaseJavaModule {
 
     OkHttpClient.Builder clientBuilder = mClient.newBuilder();
 
+    Log.d(TAG, "sendRequestInternal: Applying Atheer Parameters" + url);
     applyCustomBuilder(clientBuilder);
 
     if (!withCredentials) {
